@@ -9,4 +9,11 @@ import UIKit
 
 class RegistrationViewController: UIViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    @IBAction func backToMainView(_ sender: UIButton) {
+        self.dismiss(animated: false)
+    }
 }
