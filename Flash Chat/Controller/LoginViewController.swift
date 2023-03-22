@@ -7,9 +7,7 @@ class LoginViewController: UIViewController {
         
     }
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "LoginVC", sender: self)
+        performSegue(withIdentifier: "ChatVC", sender: self)
     }
-    @IBAction func backToMainButtonPressed(_ sender: UIButton) {
-        dismiss(animated: false)
-    }
+    
 }
