@@ -1,10 +1,3 @@
-//
-//  WelcomeViewController.swift
-//  Flash Chat
-//
-//  Created by Максим Сиверцев on 22.03.2023.
-//
-
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -12,5 +5,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "LoginVC", sender: self)
+    }
+    @IBAction func backToMainButtonPressed(_ sender: UIButton) {
+        dismiss(animated: false)
     }
 }

@@ -1,10 +1,3 @@
-//
-//  RegistrationViewController.swift
-//  Flash Chat
-//
-//  Created by Максим Сиверцев on 22.03.2023.
-//
-
 import UIKit
 
 class RegistrationViewController: UIViewController {
@@ -14,6 +7,10 @@ class RegistrationViewController: UIViewController {
         
     }
     @IBAction func backToMainView(_ sender: UIButton) {
-        self.dismiss(animated: false)
+        dismiss(animated: false)
+    }
+    
+    @IBAction func registrationButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "ChatVC", sender: self)
     }
 }
