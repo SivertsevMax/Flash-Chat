@@ -18,16 +18,9 @@ class WelcomeViewController: UIViewController {
             Timer.scheduledTimer(withTimeInterval: 0.1 * charIndex, repeats: false) { (timer) in
                 self.mainTitle.text?.append(char)
             }
-            charIndex += 0.2
+            charIndex += 1
         }
-    }
-    
-    @IBAction func loginButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "LoginToChat", sender: self)
-    }
-    
-    @IBAction func registrationButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "RegisterToChat", sender: self)
+        
     }
     
 }

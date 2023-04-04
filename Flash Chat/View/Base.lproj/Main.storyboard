@@ -29,7 +29,6 @@
                                     <color key="titleColor" name="BrandBlue"/>
                                 </state>
                                 <connections>
-                                    <action selector="registrationButtonPressed:" destination="IF4-LI-JQ2" eventType="touchUpInside" id="t0x-LD-KwI"/>
                                     <segue destination="xYT-KG-cYz" kind="show" identifier="RegisterToChat" animates="NO" id="uqG-ju-N1z"/>
                                 </connections>
                             </button>
@@ -45,7 +44,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginButtonPressed:" destination="IF4-LI-JQ2" eventType="touchUpInside" id="aHE-Ni-gMq"/>
                                     <segue destination="e9r-yA-N77" kind="show" identifier="LoginToChat" animates="NO" id="Qgc-wv-k73"/>
                                 </connections>
                             </button>
