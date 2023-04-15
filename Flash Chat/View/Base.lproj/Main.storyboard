@@ -136,7 +136,7 @@
                                         </constraints>
                                         <color key="textColor" name="BrandBlue"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3v-aP-msZ">
                                         <rect key="frame" x="48" y="71" width="318" height="61"/>
@@ -238,7 +238,7 @@
                                         </constraints>
                                         <color key="textColor" name="BrandBlue"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vba-NO-F34">
                                         <rect key="frame" x="48" y="71" width="318" height="61"/>
@@ -390,8 +390,13 @@
             <point key="canvasLocation" x="1159.4202898550725" y="3.3482142857142856"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Hsx-5c-oqn">
+            <size key="intrinsicContentSize" width="307.33333333333331" height="60"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="yOZ-bH-suU"/>
+        <segue reference="lcO-Hc-y7K"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>

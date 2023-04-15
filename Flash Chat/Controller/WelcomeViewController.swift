@@ -11,7 +11,7 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         registerButton.layer.cornerRadius = 15
         logInButton.layer.cornerRadius = 15
-        
+        mainTitle.text = "⚡️FlashChat"
         
     }
     
