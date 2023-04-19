@@ -178,6 +178,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="6PY-NV-RGa"/>
                     <connections>
+                        <outlet property="registrationEmail" destination="hc9-iB-clg" id="jz2-CJ-AI2"/>
+                        <outlet property="registrationPassword" destination="N7N-jr-uL5" id="XUA-5u-Oee"/>
                         <segue destination="BzO-Ic-Bm0" kind="show" identifier="ChatVC" id="yOZ-bH-suU"/>
                     </connections>
                 </viewController>
@@ -282,6 +284,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="NF5-yQ-A1J"/>
                     <connections>
+                        <outlet property="loginEmail" destination="63J-jk-w8p" id="WeZ-r1-1J3"/>
+                        <outlet property="loginPassword" destination="qx4-Od-rQZ" id="0CC-LN-jms"/>
                         <segue destination="BzO-Ic-Bm0" kind="show" identifier="ChatVC" id="lcO-Hc-y7K"/>
                     </connections>
                 </viewController>
