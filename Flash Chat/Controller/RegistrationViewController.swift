@@ -10,17 +10,18 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = K.appName
     }
     
     @IBAction func registrationButtonPressed(_ sender: UIButton) {
         if let email = registrationEmail.text, let password = registrationPassword.text {
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let error = error {
-                    let alert = UIAlertController(title: "Alert", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default))
+                    let alert = UIAlertController(title: "ERROR", message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "close", style: UIAlertAction.Style.default))
                     self.present(alert, animated: true)
                 } else {
-                    self.performSegue(withIdentifier: "ChatVC", sender: self)
+                    self.performSegue(withIdentifier: K.registerSegue, sender: self)
                 }
             }
         }
