@@ -81,10 +81,10 @@
 				13326D5F29CAF4620051C364 /* LaunchScreen.storyboard */,
 				13326D6229CAF4620051C364 /* Info.plist */,
 				1347A2D429F02E4E00ECBADF /* GoogleService-Info.plist */,
+				1363D8A729F3E1EF00D4D2B6 /* Constants.swift */,
 				13326D6829CAF5680051C364 /* Model */,
 				13326D6929CAF5810051C364 /* View */,
 				13326D6A29CAF5880051C364 /* Controller */,
-				1363D8A729F3E1EF00D4D2B6 /* Constants.swift */,
 			);
 			path = "Flash Chat";
 			sourceTree = "<group>";
