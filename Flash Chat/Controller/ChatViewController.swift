@@ -32,7 +32,7 @@ class ChatViewController: UIViewController {
             ref = db.collection(K.FStore.collectionName).addDocument(data: [
                 "\(K.FStore.senderField)": "\(messageSender)",
                 "\(K.FStore.bodyField)": "\(message)",
-                "\(K.FStore.dateField)": "\(Date.now)"
+                "\(K.FStore.dateField)": "\(NSDate())"
             ]) { error in
                 if let error = error {
                     print("Error adding document: \(error)")
