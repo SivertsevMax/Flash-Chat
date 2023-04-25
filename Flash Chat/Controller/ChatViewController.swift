@@ -8,19 +8,9 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
+    let db = Firestore.firestore()
+    
     var messeges: [Message] = [
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
         Message(sender: "1", body: "hello"),
         Message(sender: "2", body: "hey!"),
         Message(sender: "1", body: "what's up?")
@@ -37,6 +27,21 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
+        if let message = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
+            var ref: DocumentReference? = nil
+            ref = db.collection(K.FStore.collectionName).addDocument(data: [
+                "sender": "\(messageSender)",
+                "body": "\(message)"
+            ]) { error in
+                if let error = error {
+                    print("Error adding document: \(error)")
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
+                }
+
+            }
+        }
+        
     }
     
     @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
