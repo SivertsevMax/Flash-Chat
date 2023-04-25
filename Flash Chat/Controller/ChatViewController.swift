@@ -11,6 +11,18 @@ class ChatViewController: UIViewController {
     var messeges: [Message] = [
         Message(sender: "1", body: "hello"),
         Message(sender: "2", body: "hey!"),
+        Message(sender: "1", body: "what's up?"),
+        Message(sender: "1", body: "hello"),
+        Message(sender: "2", body: "hey!"),
+        Message(sender: "1", body: "what's up?"),
+        Message(sender: "1", body: "hello"),
+        Message(sender: "2", body: "hey!"),
+        Message(sender: "1", body: "what's up?"),
+        Message(sender: "1", body: "hello"),
+        Message(sender: "2", body: "hey!"),
+        Message(sender: "1", body: "what's up?"),
+        Message(sender: "1", body: "hello"),
+        Message(sender: "2", body: "hey!"),
         Message(sender: "1", body: "what's up?")
     ]
     
@@ -21,7 +33,7 @@ class ChatViewController: UIViewController {
         tableView.dataSource = self
         title = K.appName
         navigationItem.hidesBackButton = true
-        
+        tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
     }
     
     @IBAction func sendPressed(_ sender: UIButton) {
@@ -49,13 +61,13 @@ extension ChatViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
-        cell.textLabel!.text = messeges[indexPath.row].body
-        return cell
+        let messageCell = cell  as! MessageCell
+        messageCell.label.text = messeges[indexPath.row].body
+        return messageCell
     }
 }
 
 extension ChatViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
     }
 }

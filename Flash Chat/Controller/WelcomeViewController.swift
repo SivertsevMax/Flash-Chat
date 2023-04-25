@@ -9,8 +9,8 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerButton.layer.cornerRadius = 15
-        logInButton.layer.cornerRadius = 15
+        registerButton.layer.cornerRadius = registerButton.frame.size.height / 5
+        logInButton.layer.cornerRadius = registerButton.frame.size.height / 5
         mainTitle.text = K.appName
         
     }
