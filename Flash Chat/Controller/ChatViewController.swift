@@ -30,8 +30,9 @@ class ChatViewController: UIViewController {
         if let message = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
             var ref: DocumentReference? = nil
             ref = db.collection(K.FStore.collectionName).addDocument(data: [
-                "sender": "\(messageSender)",
-                "body": "\(message)"
+                "\(K.FStore.senderField)": "\(messageSender)",
+                "\(K.FStore.bodyField)": "\(message)",
+                "\(K.FStore.dateField)": "\(Date.now)"
             ]) { error in
                 if let error = error {
                     print("Error adding document: \(error)")
