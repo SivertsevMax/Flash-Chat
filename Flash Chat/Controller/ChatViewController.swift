@@ -11,43 +11,16 @@ class ChatViewController: UIViewController {
     var messeges: [Message] = [
         Message(sender: "1", body: "hello"),
         Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?"),
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
         Message(sender: "1", body: "what's up?")
     ]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         title = K.appName
         navigationItem.hidesBackButton = true
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: K.cellIdentifier)
-        tableView.dataSource = self
         
     }
     
@@ -71,12 +44,18 @@ class ChatViewController: UIViewController {
 
 extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.messeges.count
+        return messeges.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
-        cell.textLabel!.text = self.messeges[indexPath.row].body
+        cell.textLabel!.text = messeges[indexPath.row].body
         return cell
+    }
+}
+
+extension ChatViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
     }
 }
