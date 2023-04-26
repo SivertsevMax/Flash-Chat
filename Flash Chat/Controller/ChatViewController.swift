@@ -5,20 +5,18 @@ import FirebaseFirestore
 
 class ChatViewController: UIViewController {
     
+    @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
     let db = Firestore.firestore()
     
-    var messeges: [Message] = [
-        Message(sender: "1", body: "hello"),
-        Message(sender: "2", body: "hey!"),
-        Message(sender: "1", body: "what's up?")
-    ]
+    var messeges: [Message] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadMessages()
         tableView.delegate = self
         tableView.dataSource = self
         title = K.appName
@@ -30,16 +28,15 @@ class ChatViewController: UIViewController {
         if let message = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
             var ref: DocumentReference? = nil
             ref = db.collection(K.FStore.collectionName).addDocument(data: [
-                "\(K.FStore.senderField)": "\(messageSender)",
-                "\(K.FStore.bodyField)": "\(message)",
-                "\(K.FStore.dateField)": "\(NSDate())"
+                K.FStore.senderField: "\(messageSender)",
+                K.FStore.bodyField: "\(message)",
+                K.FStore.dateField: Date()
             ]) { error in
                 if let error = error {
                     print("Error adding document: \(error)")
                 } else {
                     print("Document added with ID: \(ref!.documentID)")
                 }
-
             }
         }
         
@@ -56,6 +53,30 @@ class ChatViewController: UIViewController {
             self.present(alert, animated: false)
         }
         
+    }
+    
+    func loadMessages() {
+        messeges = []
+        db.collection(K.FStore.collectionName).getDocuments { querySnapshot, error in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                if let snapShotDocument = querySnapshot?.documents {
+                    for document in snapShotDocument {
+//                        print("\(document.documentID) => \(document.data())")
+                        let data =  document.data()
+                        if let messageSender = data[K.FStore.senderField] as? String, let messageBody = data[K.FStore.bodyField] as? String {
+                            let newMesseges = Message(sender: messageSender, body: messageBody)
+                            self.messeges.append(newMesseges)
+                            
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
 }
