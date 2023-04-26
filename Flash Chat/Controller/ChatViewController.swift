@@ -30,12 +30,13 @@ class ChatViewController: UIViewController {
             ref = db.collection(K.FStore.collectionName).addDocument(data: [
                 K.FStore.senderField: "\(messageSender)",
                 K.FStore.bodyField: "\(message)",
-                K.FStore.dateField: Date()
+                K.FStore.dateField: Date().timeIntervalSince1970
             ]) { error in
                 if let error = error {
                     print("Error adding document: \(error)")
                 } else {
                     print("Document added with ID: \(ref!.documentID)")
+                    self.messageTextfield.text = ""
                 }
             }
         }
@@ -56,18 +57,25 @@ class ChatViewController: UIViewController {
     }
     
     func loadMessages() {
-        messeges = []
-        db.collection(K.FStore.collectionName).getDocuments { querySnapshot, error in
+        db.collection(K.FStore.collectionName)
+            .order(by: K.FStore.dateField)
+            .addSnapshotListener { querySnapshot, error in
+                
+            self.messeges = []
+                
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
                 if let snapShotDocument = querySnapshot?.documents {
                     for document in snapShotDocument {
-//                        print("\(document.documentID) => \(document.data())")
                         let data =  document.data()
-                        if let messageSender = data[K.FStore.senderField] as? String, let messageBody = data[K.FStore.bodyField] as? String {
+                        if let messageSender = data[K.FStore.senderField] as? String,
+                           let messageBody = data[K.FStore.bodyField] as? String,
+                           let _ = data[K.FStore.dateField]
+                        {
                             let newMesseges = Message(sender: messageSender, body: messageBody)
                             self.messeges.append(newMesseges)
+                            
                             
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
