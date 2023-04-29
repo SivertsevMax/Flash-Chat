@@ -24,7 +24,13 @@ class ChatViewController: UIViewController {
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
     }
     
+    //MARK: - func of ChatViewController
+    
     @IBAction func sendPressed(_ sender: UIButton) {
+        sendButtonPressed()
+    }
+    
+    func sendButtonPressed() {
         if let message = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
             var ref: DocumentReference? = nil
             ref = db.collection(K.FStore.collectionName).addDocument(data: [
@@ -79,6 +85,9 @@ class ChatViewController: UIViewController {
                             
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
+                                
+                                let indexPath = IndexPath(row: (snapShotDocument.count - 1), section: 0)
+                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
                             }
                         }
                     }
@@ -89,20 +98,41 @@ class ChatViewController: UIViewController {
     
 }
 
+//MARK: - UITableViewDataSource
+
 extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messeges.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let message = messeges[indexPath.row]
+        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
         let messageCell = cell  as! MessageCell
-        messageCell.label.text = messeges[indexPath.row].body
+        messageCell.label.text = message.body
+        
+        if message.sender == Auth.auth().currentUser?.email {
+            messageCell.rightImageView.isHidden = false
+            messageCell.leftImageView.isHidden = true
+            messageCell.messageBubble.backgroundColor = UIColor(named: K.BrandColors.purple)
+            messageCell.label.textColor = UIColor(named: K.BrandColors.lightPurple)
+        } else {
+            messageCell.rightImageView.isHidden = true
+            messageCell.leftImageView.isHidden = false
+            messageCell.messageBubble.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
+            messageCell.label.textColor = UIColor(named: K.BrandColors.purple)
+        }
+        
         return messageCell
     }
 }
+
+//MARK: - UITableViewDelegate
 
 extension ChatViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 }
+
