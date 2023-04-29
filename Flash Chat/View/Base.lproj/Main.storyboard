@@ -72,7 +72,7 @@
                             <constraint firstItem="l6y-kf-7NY" firstAttribute="bottom" secondItem="8aa-6x-6nC" secondAttribute="bottom" constant="20" id="zYE-lI-E67"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="4Ob-Jn-uDn"/>
+                    <navigationItem key="navigationItem" title="Back" id="4Ob-Jn-uDn"/>
                     <connections>
                         <outlet property="logInButton" destination="8aa-6x-6nC" id="IZB-VP-sju"/>
                         <outlet property="mainTitle" destination="Hsx-5c-oqn" id="ARc-al-1Dd"/>
@@ -381,7 +381,7 @@
         <!--Navigation Controller-->
         <scene sceneID="nvv-Dn-QrW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="H2s-3Q-NbS" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsWhenKeyboardAppears="YES" id="H2s-3Q-NbS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Eub-jb-bvh">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -393,6 +393,9 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Fza-MD-M9Q">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="IF4-LI-JQ2" kind="relationship" relationship="rootViewController" destinationCreationSelector="WelcomeView" id="49n-Hd-22R"/>
                     </connections>

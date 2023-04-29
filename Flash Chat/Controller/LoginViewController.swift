@@ -10,7 +10,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = K.appName
+//        title = K.appName
     }
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         if let email = loginEmail.text, let password = loginPassword.text {
